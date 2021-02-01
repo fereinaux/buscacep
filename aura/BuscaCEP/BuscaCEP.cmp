@@ -1,0 +1,104 @@
+<aura:component  implements="force:appHostable,force:hasRecordId,flexipage:availableForAllPageTypes"  access="global" >    
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="title" type="string"/>
+    <aura:attribute name="object" type="string"/>    
+    <aura:attribute name="cepField" type="string"/>    
+    <aura:attribute name="streetField" type="string"/>
+    <aura:attribute name="cityField" type="string"/>
+    <aura:attribute name="stateField" type="string"/>
+    <aura:attribute name="neighboorField" type="string"/>
+    <aura:attribute name="numberField" type="string"/>
+    <aura:attribute name="complementField" type="string"/>   
+    <aura:registerEvent name="recordUpdated" type="c:recordUpdated"/>  
+    
+    <lightning:card class="slds-is-relative" iconName="custom:custom98" title="{!v.title}">
+        <div class="slds-p-left_medium slds-p-right_medium">
+            
+            <lightning:recordViewForm aura:id="viewForm" recordId="{!v.recordId}" objectApiName="{!v.object}">
+                <div class="slds-media">           
+                    <div class="slds-media__body">
+                        <lightning:layout class="slds-hint-parent">
+                            
+                            <lightning:buttonIcon iconName="utility:edit" class="slds-col_bump-left" iconClass="slds-button__icon_hint" variant="bare" alternativeText="Edit Record" onclick="{!c.editRecord}" />
+                        </lightning:layout>
+                        <lightning:layout multipleRows="true">
+                            <lightning:layoutItem size="3">
+                                <lightning:outputField fieldName="{!v.cepField}"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6">
+                                <lightning:outputField fieldName="{!v.streetField}"/>
+                            </lightning:layoutItem>
+                            <aura:if isTrue="{!v.numberField != null}">
+                                <lightning:layoutItem size="3">
+                                    <lightning:outputField fieldName="{!v.numberField}"/>
+                                </lightning:layoutItem>
+                            </aura:if>
+                            <aura:if isTrue="{!v.complementField != null}">
+                                <lightning:layoutItem size="3">
+                                    <lightning:outputField fieldName="{!v.complementField}"/>
+                                </lightning:layoutItem>                                                                
+                            </aura:if>
+                            <aura:if isTrue="{!v.neighboorField != null}">
+                                <lightning:layoutItem size="3">
+                                    <lightning:outputField fieldName="{!v.neighboorField}"/>
+                                </lightning:layoutItem>                                
+                            </aura:if>
+                            <lightning:layoutItem size="3">
+                                <lightning:outputField fieldName="{!v.cityField}"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="3"  >
+                                <lightning:outputField fieldName="{!v.stateField}"/>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </div>
+                </div>
+            </lightning:recordViewForm>
+            
+            
+            <lightning:recordEditForm aura:id="editForm" recordId="{!v.recordId}" objectApiName="{!v.object}" class="slds-hide" onsuccess="{!c.handleSuccess}">
+                <div class="slds-media">       
+                    <div class="slds-media__body">
+                        <lightning:messages />
+                        <lightning:layout>
+                            
+                        </lightning:layout>
+                        <lightning:layout multipleRows="true">
+                            <lightning:layoutItem size="3">
+                                <lightning:inputField fieldName="{!v.cepField}" onchange="{!c.handleChange}"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="6">
+                                <lightning:inputField aura:id="street" fieldName="{!v.streetField}"/>
+                            </lightning:layoutItem>
+                             <aura:if isTrue="{!v.numberField != null}">
+                                <lightning:layoutItem size="3">
+                                    <lightning:inputField aura:id="numero" fieldName="{!v.numberField}"/>
+                                </lightning:layoutItem>
+                            </aura:if>
+                            <aura:if isTrue="{!v.complementField != null}">
+                                <lightning:layoutItem size="3">
+                                    <lightning:inputField aura:id="complemento" fieldName="{!v.complementField}"/>
+                                </lightning:layoutItem>                                                                
+                            </aura:if>
+                            <aura:if isTrue="{!v.neighboorField != null}">
+                                <lightning:layoutItem size="3">
+                                    <lightning:inputField aura:id="bairro" fieldName="{!v.neighboorField}"/>
+                                </lightning:layoutItem>                                
+                            </aura:if>
+                            <lightning:layoutItem size="3">
+                                <lightning:inputField aura:id="cidade" fieldName="{!v.cityField}"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="3">
+                                <lightning:inputField aura:id="estado" fieldName="{!v.stateField}"/>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                        <lightning:layout horizontalAlign="center" class="slds-m-top_large">
+                            <lightning:button variant="neutral" label="Cancelar" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+                            <lightning:button variant="brand" label="Salvar" title="Submit" type="submit"/>
+                        </lightning:layout>
+                    </div>
+                </div>
+            </lightning:recordEditForm>
+            
+        </div>
+    </lightning:card>
+</aura:component>

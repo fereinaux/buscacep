@@ -1,0 +1,12 @@
+<design:component>    
+    <design:attribute name="title" label="Título" description="Título do Painel" default="Shipping Address" required="true"/>
+    <design:attribute name="object" label="Objeto" description="Objeto que será usado para atualizar os dados de endereço" default="Account"/>        
+    <design:attribute name="cepField" label="Campo CEP" description="Campo usado como base para a consulta de CEP" default="ShippingPostalCode" required="true"/>
+    <design:attribute name="streetField" label="Campo Logradouro" description="Campo referente ao Logradouro retornado pela consulta de CEP" default="ShippingStreet" required="true" />
+    <design:attribute name="cityField" label="Campo Cidade" description="Campo referente à Cidade retornado pela consulta de CEP" default="ShippingCity" required="true" />
+    <design:attribute name="stateField" label="Campo Estado" description="Campo referente ao Estado retornado pela consulta de CEP"  default="ShippingState" required="true" />
+    <design:attribute name="numberField" label="Campo Número" description="Campo referente ao Número do Endereço, só ira aparecer se preenchido"  />
+    <design:attribute name="neighboorField" label="Campo Bairro" description="Campo referente ao Bairro retornado pela consulta de CEP, só ira aparecer se preenchido"  />    
+    <design:attribute name="complementField" label="Campo Complemento" description="Campo referente ao Complemento do Endereço, só ira aparecer se preenchido"  />
+    
+</design:component>
